@@ -20,7 +20,7 @@ public class StudentResource {
         List<Student> students = studentService.findAllStudents();
         return new ResponseEntity<>(students, HttpStatus.OK);
     }
-    @GetMapping("/find/{id}")
+    @GetMapping("/view/{id}")
     public ResponseEntity<Student> getStudentById (@PathVariable("id") Long id) {
         Student student = studentService.findStudentById(id);
         return new ResponseEntity<>(student, HttpStatus.OK);
@@ -40,4 +40,10 @@ public class StudentResource {
         studentService.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+    @GetMapping("/viewStudentEmail/{email}/{password}")
+    public ResponseEntity<Student> getStudentById (@PathVariable("email") String email,@PathVariable("password") String password) {
+        Student student = studentService.findStudentByEmailAndPassword(email,password);
+        return new ResponseEntity<>(student, HttpStatus.OK);
 }
+}
+
